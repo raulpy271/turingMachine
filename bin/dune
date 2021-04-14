@@ -1,0 +1,5 @@
+(executable
+  (name turingMachineCli)
+  (public_name turing)
+  (package turingMachine)
+  (libraries turingMachine))
