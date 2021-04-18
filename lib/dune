@@ -1,2 +1,6 @@
 (library
-  (name turingMachine))
+  (name turingMachine)
+  (public_name turingMachine))
+
+(documentation)
+
