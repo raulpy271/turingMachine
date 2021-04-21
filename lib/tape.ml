@@ -4,7 +4,7 @@ type 'symbol tape = 'symbol list * 'symbol * 'symbol list;;
 type shiftSide = Left | Right;;
 
 let leftSwift 
-    (empty : 'symbol) 
+  (empty : 'symbol) 
     (tp : 'symbol tape) = 
   match tp with
   | ([], head, rightSide) -> ([], empty, head :: rightSide)
@@ -16,8 +16,14 @@ let leftSwift
 ;;
 
 let rightShift
-  (_ : 'symbol) 
-  (tp : 'symbol tape) = tp
+  (empty : 'symbol) 
+    (tp : 'symbol tape) =
+  match tp with
+  | (leftSide, head, []) -> (leftSide @ [head], empty, [])
+  | (leftSide, head, rightSide) -> 
+      let firstOfRightSide = List.hd rightSide in 
+      let newRightSide = List.tl rightSide in
+      (leftSide @ [head], firstOfRightSide, newRightSide)
 ;;
 
 let shiftTape side empty (tp : 'symbol tape) = 
