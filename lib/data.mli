@@ -1,6 +1,6 @@
 
 type ('symbol, 'state) transition = 
-  'state -> 'symbol -> ('state * 'symbol * Tape.shiftSide) option
+  'symbol -> 'state -> ('symbol * 'state * Tape.shiftSide) option
 (**
 This is a function that represent a transition of a turing machine. 
 

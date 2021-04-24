@@ -1,6 +1,6 @@
 
 type ('symbol, 'state) transition = 
-  'state -> 'symbol -> ('state * 'symbol * Tape.shiftSide) option
+  'symbol -> 'state -> ('symbol * 'state * Tape.shiftSide) option
 
 type ('symbol, 'state) turingMachine = 
   'symbol * 'symbol list * 'state * 'state list * 
