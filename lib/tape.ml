@@ -1,12 +1,9 @@
 
 type 'symbol tape = 'symbol list * 'symbol * 'symbol list;;
 
-type shiftSide = Left | Right;;
+type shift_side = Left | Right;;
 
-let leftSwift 
-  (empty : 'symbol) 
-    (tp : 'symbol tape) = 
-  match tp with
+let left_swift empty tp = match tp with
   | ([], head, rightSide) -> ([], empty, head :: rightSide)
   | (leftSide, head, rightSide) -> 
       let leftSwiftWithLastInFront = Utils.putLastInFront leftSide in
@@ -15,10 +12,7 @@ let leftSwift
       (newLeftSide, lastOfLeftSide, head :: rightSide)
 ;;
 
-let rightShift
-  (empty : 'symbol) 
-    (tp : 'symbol tape) =
-  match tp with
+let right_shift empty tp = match tp with
   | (leftSide, head, []) -> (leftSide @ [head], empty, [])
   | (leftSide, head, rightSide) -> 
       let firstOfRightSide = List.hd rightSide in 
@@ -26,10 +20,9 @@ let rightShift
       (leftSide @ [head], firstOfRightSide, newRightSide)
 ;;
 
-let shiftTape side empty (tp : 'symbol tape) = 
-  match side with
-  | Left -> leftSwift empty tp
-  | Right -> rightShift empty tp
+let shift_tape side empty tp = match side with
+  | Left -> left_swift empty tp
+  | Right -> right_shift empty tp
 ;;
 
 let tape_of_list empty l : 'symbol tape = 
@@ -38,7 +31,7 @@ let tape_of_list empty l : 'symbol tape =
   | head :: tail -> ([], head, tail)
 ;;
 
-let readHeadValue (tp : 'symbol tape) = 
+let read_head (tp : 'symbol tape) = 
   match tp with | (_, head, _) -> head
 ;;
 

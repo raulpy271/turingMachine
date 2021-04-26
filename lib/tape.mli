@@ -11,9 +11,9 @@ It's an infinite tape because the left and right side
 can grown as the user want, it's limited only because of the hardware.
  *)
 
-type shiftSide = Left | Right
+type shift_side = Left | Right
 
-val shiftTape : shiftSide -> 'symbol -> 'symbol tape -> 'symbol tape
+val shift_tape : shift_side -> 'symbol -> 'symbol tape -> 'symbol tape
 (**
 This function move the head of the automata to left or right
  *)
@@ -24,5 +24,5 @@ Get a list and a element to represent an empty symbol,
 and create a tape from these arguments.
  *)
 
-val readHeadValue : 'symbol tape -> 'symbol
+val read_head : 'symbol tape -> 'symbol
 
