@@ -9,6 +9,6 @@ This function aims to represent the behavior of a given machine. So, it gives ea
 
 @param machine This is the machine which the id represents.
 
-@return The return is the next ID of the machine, this ID is given by the transition function. Besides, the returned value is inside a [ option ] because when the given machine-ID is in a halt state, it return [ None ].
+@return The return is the next ID of the machine, this ID is given by the transition function. Besides, the returned value is inside a [ option ] because when the machine halt in the next step, it return [ None ].
 *)
 
