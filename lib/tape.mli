@@ -15,7 +15,13 @@ type shift_side = Left | Right
 
 val shift_tape : shift_side -> 'symbol -> 'symbol tape -> 'symbol tape
 (**
-This function move the head of the automata to left or right
+This function move the head of the automata to left or right.
+
+@param side The side which it'll move.
+
+@param empty The blank symbol
+
+@param tp The tape
  *)
 
 val tape_of_list : 'symbol -> 'symbol list -> 'symbol tape
@@ -25,4 +31,6 @@ and create a tape from these arguments.
  *)
 
 val read_head : 'symbol tape -> 'symbol
+
+val write_head : 'symbol -> 'symbol tape -> 'symbol tape
 
