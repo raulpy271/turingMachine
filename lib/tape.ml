@@ -26,13 +26,15 @@ let shift_tape side empty tp = match side with
   | Right -> right_shift empty tp
 ;;
 
-let tape_of_list empty l : 'symbol tape = 
+let tape_of_list empty l = 
   match l with
   | [] -> ([], empty, [])
   | head :: tail -> ([], head, tail)
 ;;
 
-let read_head (tp : 'symbol tape) = 
-  match tp with | (_, head, _) -> head
+let read_head (_, head, _) = head;;
+
+let write_head new_value (left, _, right) = 
+  (left, new_value, right)
 ;;
 
