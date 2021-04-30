@@ -15,3 +15,9 @@ let step id machine =
   | None -> None
 ;;
 
+let id_of_machine machine = 
+  let (blank, input, init_state, _, _) = machine in
+  let tape = Tape.tape_of_list blank input in
+  (tape, init_state)
+;;
+
