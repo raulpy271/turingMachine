@@ -7,3 +7,9 @@ let put_last_in_front list =
   in put_last_in_front_tail_recursive list []
 ;;
 
+let clear_term () = 
+  match Sys.os_type with
+  | "Unix" -> Sys.command "clear"
+  | _ -> Sys.command "cls"
+;; 
+
