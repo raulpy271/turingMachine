@@ -21,3 +21,13 @@ let id_of_machine machine =
   (tape, init_state)
 ;;
 
+let run_machine_with ~f ~machine =
+  let rec run_helper id =
+    let _ = f (Some id) machine in
+    match step id machine with
+    | None -> f None machine
+    | Some new_id -> run_helper new_id 
+  in
+  id_of_machine machine |> run_helper
+;;
+
