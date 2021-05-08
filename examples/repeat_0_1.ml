@@ -1,6 +1,9 @@
 open TuringMachine
 
-let repeat_0_1: (int, int * string) Data.transition = 
+type symbol = int
+type state = int * string
+
+let repeat_0_1: (symbol, state) Data.transition = 
   fun _ state -> match state with
   | (10, _) -> None
   | (acc, "Write0") -> Some (0, (acc + 1, "Write1"), Tape.Right)
@@ -8,11 +11,11 @@ let repeat_0_1: (int, int * string) Data.transition =
   | _ -> None
 ;;
 
-let machine: (int, int * string) Data.turingMachine =
+let machine: (symbol, state) Data.turingMachine =
   let blank = 0 in
   let input = [] in
-  let end_states = [] in
   let init_state = (0, "Write0") in
+  let end_states = [] in
   let transition = repeat_0_1 in
   (blank, input, init_state, end_states, transition)
 ;;
