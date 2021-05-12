@@ -1,4 +1,25 @@
 
+val read_head : 'symbol Data.tape -> 'symbol
+
+val write_head : 'symbol -> 'symbol Data.tape -> 'symbol Data.tape
+
+val shift_tape : Data.shift_side -> 'symbol -> 'symbol Data.tape -> 'symbol Data.tape
+(**
+This function move the head of the automata to left or right.
+
+@param side The side which it'll move.
+
+@param empty The blank symbol
+
+@param tp The tape
+*)
+
+val tape_of_list : 'symbol -> 'symbol list -> 'symbol Data.tape
+(**
+Get a list and a element to represent an empty symbol,
+and create a tape from these arguments.
+*)
+
 val step : ('symbol, 'state) Data.turingMachineID ->
   ('symbol, 'state) Data.turingMachine ->
   ('symbol, 'state) Data.turingMachineID option
@@ -18,10 +39,11 @@ val id_of_machine : ('symbol, 'state) Data.turingMachine ->
 This function create the initial ID of a given machine
 *)
 
-val run_machine_with : f:(
-    ('symbol, 'state) Data.turingMachineID option ->
+val run_machine_with : 
+  f:(('symbol, 'state) Data.turingMachineID option ->
     ('symbol, 'state) Data.turingMachine -> unit) ->
-  machine:(('symbol, 'state) Data.turingMachine) -> unit
+  machine:(('symbol, 'state) Data.turingMachine) -> 
+  unit
 (**
 This function run the machine until it halt. In each step of the executation,
 it's call the function [ f ] with the ID and the machine.
