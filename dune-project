@@ -11,4 +11,6 @@
 
 (package
   (name turingMachine)
-  (synopsis "The executable file that show turing machine working"))
+  (synopsis "The executable file that show turing machine working")
+  (depends ocaml dune unix terminal_size))
+
