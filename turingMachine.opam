@@ -6,9 +6,7 @@ authors: ["raulpy271, raulrufino0@gmail.com"]
 license: "MIT"
 homepage: "https://github.com/raulpy271/turingMachine"
 bug-reports: "https://github.com/raulpy271/turingMachine/issues"
-depends: [
-  "dune" {>= "2.5"}
-]
+depends: ["ocaml" "dune" "unix" "terminal_size"]
 build: [
   ["dune" "subst"] {pinned}
   [
