@@ -1,6 +1,7 @@
 (library
   (name turingMachine)
-  (public_name turingMachine))
+  (public_name turingMachine)
+  (libraries terminal_size))
 
 (documentation)
 

@@ -2,4 +2,4 @@
   (name turingMachineCli)
   (public_name turing)
   (package turingMachine)
-  (libraries turingMachine examples unix terminal_size))
+  (libraries turingMachine examples unix))
