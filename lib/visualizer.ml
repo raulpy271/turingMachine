@@ -2,6 +2,9 @@
 type 'symbol string_of = 'symbol -> string
 
 
+let columns = Option.get (Terminal_size.get_columns ());;
+
+
 let use_correct_length len str =
   let char_missing = len - String.length str in
   let rec add_spaces str quantity =
@@ -14,10 +17,18 @@ let use_correct_length len str =
 
 let get_max_cell_length len_of_higher_item =
   let border_len = 3 in
-  let columns = Option.get (Terminal_size.get_columns ()) in 
   let columns_per_cell = len_of_higher_item + border_len in
   let cells_supported = (columns - border_len) / columns_per_cell in
   cells_supported
+;;
+
+
+let get_supported_cells tp =
+  match tp with (left, head, right) ->
+    let max_size_in_tape = Utils.get_len_of_higher_size 
+      (left @ [head] @ right) in
+    let supported_cells_length = get_max_cell_length max_size_in_tape in
+    supported_cells_length
 ;;
 
 
@@ -65,32 +76,59 @@ let tape_in_string_of_tape
 
 let get_list_with_size_of_screen_of_tape
   (tp: string Data.tape) 
-    (empty: string) : string list =
+    (empty: string) 
+    (supported_cells: int) : string list =
   match tp with (left, head, right) -> 
-    let max_size_in_tape = Utils.get_len_of_higher_size 
-      (left @ [head] @ right) in
-    let supported_cells_length = get_max_cell_length max_size_in_tape in
     let left_side_cutted = 
       Utils.fill_list_in_left left
-        (supported_cells_length/2) empty in
+        (supported_cells/2) empty in
     let right_side_cutted =
       Utils.fill_list_in_right right
-        (if Utils.is_even supported_cells_length
-          then (supported_cells_length/2) - 1
-          else supported_cells_length / 2
+        (if Utils.is_even supported_cells
+          then (supported_cells/2) - 1
+          else supported_cells/ 2
         ) empty in
     (left_side_cutted @ [head] @ right_side_cutted)
 ;;
 
 
 let string_of_tape
-  (empty: 'symbol) (string_of_symbol: 'symbol string_of)
-    (tp : 'symbol Data.tape) : string = 
-  let empty_in_string = string_of_symbol empty in
-  let tp_in_string = tape_in_string_of_tape tp string_of_symbol in
+  (empty: string) (tp : string Data.tape) 
+    (supported_cells: int): string = 
   let tape_in_list_of_strings = 
-    get_list_with_size_of_screen_of_tape tp_in_string empty_in_string in
+    get_list_with_size_of_screen_of_tape tp empty supported_cells in
   let tape_view = create_tape_view tape_in_list_of_strings in
   tape_view
 ;;
+
+
+let view_of_state
+  (state: 'state)
+    (string_of_state: 'state string_of) : string =
+  let border_len = 3 in
+  let half_of_screen = ((columns - border_len) / 2 ) + 1 in
+  let left_border = String.make half_of_screen ' ' in
+  let state_in_string = string_of_state state in 
+  left_border ^ "^"     ^ "\n" ^
+  left_border ^ "|"     ^ "\n" ^
+  left_border ^ "+--< " ^ state_in_string ^ "\n"
+;;
+
+
+let view_of_machine
+  (id: ('symbol, 'state) Data.turingMachineID) 
+    (empty: 'symbol)
+    (string_of_symbol: 'symbol string_of)
+    (string_of_state: 'state string_of) : string =
+  let (tp, state) = id in
+  let empty_in_string = string_of_symbol empty in
+  let tp_in_string = tape_in_string_of_tape tp string_of_symbol in
+  let supported_cells = get_supported_cells tp_in_string in
+  let tape_view = 
+    string_of_tape empty_in_string tp_in_string supported_cells in
+  let state_view = 
+    view_of_state state string_of_state in
+  tape_view ^ state_view
+;;
+
 

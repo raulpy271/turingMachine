@@ -34,7 +34,7 @@ let tape_of_list empty l =
   | head :: tail -> ([], head, tail)
 ;;
 
-let step id machine =
+let step id machine f =
   let (blank, _, _, end_states, transition) = machine in
   let (current_tape, current_state) = id in
   let head_value = read_head current_tape in
@@ -42,12 +42,17 @@ let step id machine =
   | Some (new_symbol, new_state, side) ->
       let is_end_state = List.mem new_state end_states in
       if not is_end_state then 
-        let new_tape = current_tape
-          |> write_head new_symbol
-          |> shift_tape side blank in
-        Some (new_tape, new_state)
-      else None
-  | None -> None
+        let tape_with_new_head = write_head new_symbol current_tape in
+        let _ = f (Some (tape_with_new_head, new_state)) machine in
+        let final_tape = shift_tape side blank tape_with_new_head in
+        let _ = f (Some (final_tape, new_state)) machine in
+        Some (final_tape, new_state)
+      else 
+        let _ = f None machine in
+        None
+  | None -> 
+    let _ = f None machine in
+    None
 ;;
 
 let id_of_machine machine = 
@@ -58,9 +63,8 @@ let id_of_machine machine =
 
 let run_machine_with ~f ~machine =
   let rec run_helper id =
-    let _ = f (Some id) machine in
-    match step id machine with
-    | None -> f None machine
+    match step id machine f with
+    | None -> ()
     | Some new_id -> run_helper new_id 
   in
   id_of_machine machine |> run_helper
