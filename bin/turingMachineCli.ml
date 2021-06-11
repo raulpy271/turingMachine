@@ -3,8 +3,6 @@ open Examples;;
 
 let machine = Repeat_0_1.machine;;
 
-let id = Run.id_of_machine machine;;
-
 let print_step id _ =
   let _ = Utils.clear_term () in
   match id with
