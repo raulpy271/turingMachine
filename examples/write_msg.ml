@@ -48,15 +48,8 @@ let machine: (symbol, state) Data.turingMachine =
 ;;
 
 
-let print_step id _ =
-  let _ = Utils.clear_term () in
-  match id with
-  | Some (tp, { steps_missing_to_stop = steps; _}) ->
-    let tp_in_string = Visualizer.string_of_tape ' ' (String.make 1) tp in
-    print_endline ("tape:    " ^ tp_in_string);
-    print_endline ("state:   " ^ (string_of_int steps)^ "\n");
-    Unix.sleep 1
-  | None -> print_endline "HALT"
-;;
+let string_of_symbol = String.make 1;;
+let string_of_state _ = "Running";;
+
 
 
