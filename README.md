@@ -9,7 +9,19 @@ Now, the machines is visualized throught the terminal, but, it can be extend to 
 
 # Usage
 
-.
+This package use [dune](https://dune.readthedocs.io/en/stable/) as build system. So before run the app, install dune and the dependecies using:
+
+```
+$ opam install .
+```
+
+Now, build the package and run it:
+
+```
+$ dune build
+
+$ dune exec turing
+```
 
 # Documentation
 
