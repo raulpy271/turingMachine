@@ -6,11 +6,12 @@
 
 (license MIT)
 (authors "raulpy271, raulrufino0@gmail.com")
+(maintainers "raulpy271, raulrufino0@gmail.com")
 (source (github "raulpy271/turingMachine"))
 (homepage "https://github.com/raulpy271/turingMachine")
 
 (package
   (name turingMachine)
-  (synopsis "The executable file that show turing machine working")
+  (synopsis "The library that export function and datatypes to show turing machine working")
   (depends ocaml dune unix terminal_size))
 
