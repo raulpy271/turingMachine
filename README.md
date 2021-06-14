@@ -50,7 +50,7 @@ let string_of_symbol : symbol -> string =
 
 The main module will use these three values of your module to show the machine execution in the screen. To see a simple example of machine check the [`repeat_0_1`](/examples/repeat_0_1.ml) machine.
 
-You probably have realized that to create a machine, your need to create a value of the type `('symbol, 'state) Data.turingMachine`. To better understand these data types, read the generated documentation of the module [`Data`](https://raulpy271.github.io/turingMachine/turingMachine/TuringMachine/Data/index.html). 
+You probably have realized that to create a machine, your need to create a value of the type `('symbol, 'state) Data.turingMachine`. The type `symbol` defines the type of the value of each cell in the tape, and the type `state` defines what is the state of the machine. To better understand these data types, read the generated documentation of the module [`Data`](https://raulpy271.github.io/turingMachine/turingMachine/TuringMachine/Data/index.html). 
 
-Besides, you can also view the [documentation](https://raulpy271.github.io/turingMachine/turingMachine/TuringMachine/index.html) of each module. Feels free to add features, ideias or something great, I will like it :rocket:. 
+Besides, you can also view the [documentation](https://raulpy271.github.io/turingMachine/turingMachine/TuringMachine/index.html) of each module. Feels free to add features, ideas or something great, I will like it :rocket:. 
 
