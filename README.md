@@ -4,7 +4,7 @@
 
 To visualize turing machines there the app turingmachine.io, on it, to create machines you should use a `yml` file, which is'nt a programming language. So, I created this app to visualize turing machines, which are created in a programming language, this give to you the power to do whathaver machine you want.
 
-Now, the machines is visualized throught the terminal, but, it can be extend to others interfaces. Besides, the language that is used to program is Ocaml, but I have the goal to execute in javascript using [js_of_ocaml](https://ocsigen.org/js_of_ocaml/3.1.0/manual/overview) module, feels free to make these features.  
+Now, the machines is visualized throught the terminal, but, it can be extend to others interfaces. Besides, the language that is used to program is Ocaml, but I have the goal to execute in javascript using [js_of_ocaml](https://ocsigen.org/js_of_ocaml/3.1.0/manual/overview) module.  
 
 # Usage
 
@@ -22,7 +22,7 @@ $ dune build
 $ dune exec turing
 ```
 
-This will execute the machine [`write_msg.ml`](/examples/write_msg.ml) because in the main module ([`bin/turingMachineCli.ml`](/bin/turingMachineCli.ml)) was imported your functions. If you want create a machine, you need to create an module in the `examples` directory and use it in the main module. So, change the fallowing code in the main:
+This will execute the machine [`write_msg.ml`](/examples/write_msg.ml) because in the main module ([`bin/turingMachineCli.ml`](/bin/turingMachineCli.ml)) was imported your functions. If you want create a machine, you need to create a module in the `examples` directory and use it in the main module. So, change the fallowing code in the main:
 
 ```ocaml
 module Machine = struct
